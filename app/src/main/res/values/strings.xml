@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ContactCard</string>
+    <string name="missing_photo">Missing foto</string>
+    <string name="default_last_name">lastName</string>
+    <string name="default_first_name">firstName</string>
+</resources>

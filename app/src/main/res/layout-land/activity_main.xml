@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <fragment
+        android:id="@+id/am_fragmentList"
+        android:name="nl.spijkerman.ivo.contactcard.ListFragment"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <fragment
+        android:id="@+id/am_fragmentDetail"
+        android:name="nl.spijkerman.ivo.contactcard.DetailFragment"
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
