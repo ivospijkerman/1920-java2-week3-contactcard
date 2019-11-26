@@ -2,6 +2,7 @@ package nl.spijkerman.ivo.contactcard;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.WorkSource;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +12,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class ListFragment extends Fragment {
 
     private MainActivity parent;
-    private RecyclerView recyclerView;
+    private PersonViewModel personViewModel;
 
 
     @Nullable
@@ -38,6 +44,11 @@ public class ListFragment extends Fragment {
         PersonListAdapter adapter = new PersonListAdapter(parent);
         contactList.setAdapter(adapter);
         contactList.setLayoutManager(new LinearLayoutManager(parent));
+
+        // is this parent or this?
+        personViewModel = new ViewModelProvider(parent).get(PersonViewModel.class);
+
+        personViewModel.getAllPeople().observe(parent, adapter::setPeople);
     }
 
     private class ContactViewHolder extends RecyclerView.ViewHolder {
