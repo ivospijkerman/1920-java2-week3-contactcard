@@ -35,30 +35,9 @@ public class ListFragment extends Fragment {
         parent = (MainActivity) getActivity();
 
         RecyclerView contactList = parent.findViewById(R.id.fl_recyclerViewPeopleList);
+        PersonListAdapter adapter = new PersonListAdapter(parent);
+        contactList.setAdapter(adapter);
         contactList.setLayoutManager(new LinearLayoutManager(parent));
-        contactList.setAdapter(new RecyclerView.Adapter<ContactViewHolder>() {
-            @NonNull
-            @Override
-            public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
-                                                        int viewType) {
-                View view = getLayoutInflater().inflate(R.layout.element_contact,
-                        parent, false);
-                return new ContactViewHolder(view);
-            }
-
-            @Override
-            public void onBindViewHolder(@NonNull ContactViewHolder holder,
-                                         int position) {
-                Person person = PersonLoader.people.get(position);
-                holder.name.setText(person.toString());
-            }
-
-            @Override
-            public int getItemCount() {
-                return PersonLoader.people.size();
-            }
-        });
-
     }
 
     private class ContactViewHolder extends RecyclerView.ViewHolder {
