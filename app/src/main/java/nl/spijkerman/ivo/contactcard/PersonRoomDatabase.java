@@ -14,13 +14,15 @@ import java.util.concurrent.Executors;
 @Database(entities = {Person.class}, version = 1, exportSchema = false)
 public abstract class PersonRoomDatabase extends RoomDatabase {
 
-    private static Callback initialLoad = new Callback() {
+    private static final Callback initialLoad = new Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
 
             execute(() -> {
                 PersonDao dao = INSTANCE.personDao();
+
+                dao.deleteAll();
 
                 Person p = new Person("Harry", "Gaastra");
                 dao.insert(p);

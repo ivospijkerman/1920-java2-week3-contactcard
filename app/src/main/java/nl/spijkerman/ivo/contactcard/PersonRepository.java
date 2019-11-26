@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class PersonRepository {
+class PersonRepository {
 
-    private PersonDao personDao;
-    private LiveData<List<Person>> allPeople;
+    private final PersonDao personDao;
+    private final LiveData<List<Person>> allPeople;
 
     PersonRepository(Application application) {
         PersonRoomDatabase db = PersonRoomDatabase.getDatabase(application);
@@ -17,7 +17,7 @@ public class PersonRepository {
         allPeople = personDao.getAllPeople();
     }
 
-    public LiveData<List<Person>> getAllPeople() {
+    LiveData<List<Person>> getAllPeople() {
         return allPeople;
     }
 

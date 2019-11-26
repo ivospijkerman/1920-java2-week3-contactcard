@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/am_fragmentList"
         android:name="nl.spijkerman.ivo.contactcard.ListFragment"
 
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/am_fragmentDetail"
         android:name="nl.spijkerman.ivo.contactcard.DetailFragment"
 
