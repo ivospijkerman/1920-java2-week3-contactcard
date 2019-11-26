@@ -1,21 +1,39 @@
 package nl.spijkerman.ivo.contactcard;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Objects;
 
+@SuppressWarnings("WeakerAccess")
+@Entity(tableName = "people")
 public class Person {
 
+    // TODO make this work with auto increment ID
+
+    @NonNull
+    @ColumnInfo(name = "firstName")
     private final String firstName;
+
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "lastName")
     private final String lastName;
 
-    public Person(String firstName, String lastName) {
+    public Person(@NonNull String firstName,
+                  @NonNull String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
+    @NonNull
     public String getFirstName() {
         return firstName;
     }
 
+    @NonNull
     public String getLastName() {
         return lastName;
     }
@@ -35,6 +53,7 @@ public class Person {
     }
 
     @Override
+    @NonNull
     public String toString() {
         return "Person{" +
                 "firstName='" + firstName + '\'' +

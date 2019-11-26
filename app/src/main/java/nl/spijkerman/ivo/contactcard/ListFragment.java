@@ -2,6 +2,7 @@ package nl.spijkerman.ivo.contactcard;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.WorkSource;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +12,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class ListFragment extends Fragment {
 
     private MainActivity parent;
-    private RecyclerView recyclerView;
+    private PersonViewModel personViewModel;
 
 
     @Nullable
@@ -35,30 +41,14 @@ public class ListFragment extends Fragment {
         parent = (MainActivity) getActivity();
 
         RecyclerView contactList = parent.findViewById(R.id.fl_recyclerViewPeopleList);
+        PersonListAdapter adapter = new PersonListAdapter(parent);
+        contactList.setAdapter(adapter);
         contactList.setLayoutManager(new LinearLayoutManager(parent));
-        contactList.setAdapter(new RecyclerView.Adapter<ContactViewHolder>() {
-            @NonNull
-            @Override
-            public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
-                                                        int viewType) {
-                View view = getLayoutInflater().inflate(R.layout.element_contact,
-                        parent, false);
-                return new ContactViewHolder(view);
-            }
 
-            @Override
-            public void onBindViewHolder(@NonNull ContactViewHolder holder,
-                                         int position) {
-                Person person = PersonLoader.people.get(position);
-                holder.name.setText(person.toString());
-            }
+        // is this parent or this?
+        personViewModel = new ViewModelProvider(parent).get(PersonViewModel.class);
 
-            @Override
-            public int getItemCount() {
-                return PersonLoader.people.size();
-            }
-        });
-
+        personViewModel.getAllPeople().observe(parent, adapter::setPeople);
     }
 
     private class ContactViewHolder extends RecyclerView.ViewHolder {
