@@ -22,10 +22,17 @@ public class Person {
     @ColumnInfo(name = "lastName")
     private final String lastName;
 
+    @NonNull
+    @ColumnInfo(name = "thumbnail")
+    private final String thumbnail;
+
+
     public Person(@NonNull String firstName,
-                  @NonNull String lastName) {
+                  @NonNull String lastName,
+                  @NonNull String thumbnail) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.thumbnail = thumbnail;
     }
 
     @NonNull
@@ -36,6 +43,11 @@ public class Person {
     @NonNull
     public String getLastName() {
         return lastName;
+    }
+
+    @NonNull
+    public String getThumbnail() {
+        return thumbnail;
     }
 
     @Override

@@ -22,7 +22,8 @@ public class PersonLoader {
                 JSONObject name = result.getJSONObject("name");
                 String first = name.getString("first");
                 String last = name.getString("last");
-                Person person = new Person(first, last);
+                String thumbnail = result.getJSONObject("picture").getString("thumbnail");
+                Person person = new Person(first, last, thumbnail);
                 people.add(person);
             }
         } catch (JSONException e) {

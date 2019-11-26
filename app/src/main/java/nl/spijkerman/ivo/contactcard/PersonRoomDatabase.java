@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Person.class}, version = 1, exportSchema = false)
+@Database(entities = {Person.class}, version = 2, exportSchema = false)
 public abstract class PersonRoomDatabase extends RoomDatabase {
 
     private static Callback initialLoad = new Callback() {
@@ -47,6 +47,7 @@ public abstract class PersonRoomDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             PersonRoomDatabase.class,
                             "contactCard")
+                            .fallbackToDestructiveMigration()
                             .addCallback(initialLoad)
                             .build();
                 }

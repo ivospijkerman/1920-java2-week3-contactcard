@@ -2,13 +2,17 @@ package nl.spijkerman.ivo.contactcard;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -16,8 +20,10 @@ public class PersonListAdapter extends RecyclerView.Adapter<PersonListAdapter.Pe
 
     public PersonListAdapter(Context context) {
         this.inflater = LayoutInflater.from(context);
+        this.picasso = Picasso.with(context);
     }
 
+    private final Picasso picasso;
     private final LayoutInflater inflater;
     private List<Person> people;
 
@@ -37,8 +43,12 @@ public class PersonListAdapter extends RecyclerView.Adapter<PersonListAdapter.Pe
     public void onBindViewHolder(@NonNull PersonViewHolder holder, int position) {
         if (people == null) {
             holder.nameView.setText("No Person");
-        } else  {
-            holder.nameView.setText(people.get(position).toString());
+        } else {
+            Person person = people.get(position);
+            holder.nameView.setText(person.toString());
+            Log.i("Henk", person.getThumbnail());
+            picasso.load(person.getThumbnail())
+                    .into(holder.imageView);
         }
     }
 
@@ -52,10 +62,12 @@ public class PersonListAdapter extends RecyclerView.Adapter<PersonListAdapter.Pe
 
     class PersonViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameView;
+        private final ImageView imageView;
 
         public PersonViewHolder(@NonNull View itemView) {
             super(itemView);
             nameView = itemView.findViewById(R.id.ec_textViewName);
+            imageView = itemView.findViewById(R.id.ec_imageViewImage);
         }
     }
 }

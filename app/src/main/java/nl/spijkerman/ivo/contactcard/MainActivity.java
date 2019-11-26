@@ -1,14 +1,13 @@
 package nl.spijkerman.ivo.contactcard;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements ListFragment.OnContactClickedLister{
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
+public class MainActivity extends AppCompatActivity implements ListFragment.OnContactClickedLister {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
