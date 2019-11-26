@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PersonListAdapter extends RecyclerView.Adapter<PersonListAdapter.PersonViewHolder> {
 
-    PersonListAdapter(Context context) {
+    public PersonListAdapter(Context context) {
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -37,7 +37,7 @@ public class PersonListAdapter extends RecyclerView.Adapter<PersonListAdapter.Pe
     public void onBindViewHolder(@NonNull PersonViewHolder holder, int position) {
         if (people == null) {
             holder.nameView.setText("No Person");
-        } else {
+        } else  {
             holder.nameView.setText(people.get(position).toString());
         }
     }
@@ -53,7 +53,7 @@ public class PersonListAdapter extends RecyclerView.Adapter<PersonListAdapter.Pe
     class PersonViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameView;
 
-        PersonViewHolder(@NonNull View itemView) {
+        public PersonViewHolder(@NonNull View itemView) {
             super(itemView);
             nameView = itemView.findViewById(R.id.ec_textViewName);
         }

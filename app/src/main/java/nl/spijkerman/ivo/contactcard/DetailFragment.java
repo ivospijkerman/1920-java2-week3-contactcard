@@ -1,6 +1,5 @@
 package nl.spijkerman.ivo.contactcard;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-class DetailFragment extends Fragment {
+public class DetailFragment extends Fragment {
 
+    @Nullable
     private final Person person;
 
 
@@ -20,7 +20,7 @@ class DetailFragment extends Fragment {
         this(null);
     }
 
-    DetailFragment(Person person) {
+    public DetailFragment(Person person) {
         this.person = person;
     }
 
@@ -35,25 +35,22 @@ class DetailFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Activity activity = getActivity();
 
-        if (person != null && activity != null) {
-            TextView firstName = activity.findViewById(R.id.fd_textViewFirstName);
-            TextView lastName = activity.findViewById(R.id.fd_textViewLastName);
-
-            firstName.setText(person.getFirstName());
-            lastName.setText(person.getLastName());
-        }
-    }
-
-    void handle(Person person) {
-        Activity activity = getActivity();
-        if (activity != null) {
+        if (person != null) {
             TextView firstName = getActivity().findViewById(R.id.fd_textViewFirstName);
             TextView lastName = getActivity().findViewById(R.id.fd_textViewLastName);
 
             firstName.setText(person.getFirstName());
             lastName.setText(person.getLastName());
         }
+    }
+
+    public void handle(Person person) {
+        TextView firstName = getActivity().findViewById(R.id.fd_textViewFirstName);
+        TextView lastName = getActivity().findViewById(R.id.fd_textViewLastName);
+
+        firstName.setText(person.getFirstName());
+        lastName.setText(person.getLastName());
+
     }
 }

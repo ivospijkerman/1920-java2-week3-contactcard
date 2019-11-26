@@ -2,18 +2,28 @@ package nl.spijkerman.ivo.contactcard;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.WorkSource;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-class ListFragment extends Fragment {
+import java.util.List;
+
+public class ListFragment extends Fragment {
+
+    private MainActivity parent;
+    private PersonViewModel personViewModel;
 
 
     @Nullable
@@ -28,18 +38,28 @@ class ListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        MainActivity parent = (MainActivity) getActivity();
+        parent = (MainActivity) getActivity();
 
-        if (parent != null) {
-            RecyclerView contactList = parent.findViewById(R.id.fl_recyclerViewPeopleList);
-            PersonListAdapter adapter = new PersonListAdapter(parent);
-            contactList.setAdapter(adapter);
-            contactList.setLayoutManager(new LinearLayoutManager(parent));
+        RecyclerView contactList = parent.findViewById(R.id.fl_recyclerViewPeopleList);
+        PersonListAdapter adapter = new PersonListAdapter(parent);
+        contactList.setAdapter(adapter);
+        contactList.setLayoutManager(new LinearLayoutManager(parent));
 
-            // is this parent or this?
-            PersonViewModel personViewModel = new ViewModelProvider(parent).get(PersonViewModel.class);
+        // is this parent or this?
+        personViewModel = new ViewModelProvider(parent).get(PersonViewModel.class);
 
-            personViewModel.getAllPeople().observe(parent, adapter::setPeople);
+        personViewModel.getAllPeople().observe(parent, adapter::setPeople);
+    }
+
+    private class ContactViewHolder extends RecyclerView.ViewHolder {
+        TextView name;
+        ImageView image;
+
+        public ContactViewHolder(@NonNull View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(parent);
+            name = itemView.findViewById(R.id.ec_textViewName);
+            image = itemView.findViewById(R.id.ec_imageViewImage);
         }
     }
 

@@ -8,11 +8,11 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-class PersonViewModel extends AndroidViewModel {
+public class PersonViewModel extends AndroidViewModel {
 
-    private final PersonRepository repository;
+    private PersonRepository repository;
 
-    private final LiveData<List<Person>> allPeople;
+    private LiveData<List<Person>> allPeople;
 
     public PersonViewModel(@NonNull Application application) {
         super(application);
@@ -20,7 +20,7 @@ class PersonViewModel extends AndroidViewModel {
         allPeople = repository.getAllPeople();
     }
 
-    LiveData<List<Person>> getAllPeople() {
+    public LiveData<List<Person>> getAllPeople() {
         return allPeople;
     }
 
