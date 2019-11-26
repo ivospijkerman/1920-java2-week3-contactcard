@@ -1,7 +1,7 @@
 package nl.spijkerman.ivo.contactcard;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -20,6 +20,6 @@ public interface PersonDao {
 
     @NonNull
     @Query("SELECT * FROM people ORDER BY firstName")
-    List<Person> getAllPeople();
+    LiveData<List<Person>> getAllPeople();
 
 }
