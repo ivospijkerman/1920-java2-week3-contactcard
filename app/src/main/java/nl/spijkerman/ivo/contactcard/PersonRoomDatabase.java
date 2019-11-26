@@ -22,8 +22,7 @@ public abstract class PersonRoomDatabase extends RoomDatabase {
             execute(() -> {
                 PersonDao dao = INSTANCE.personDao();
 
-                Person p = new Person("Harry", "Gaastra");
-                dao.insert(p);
+                PersonLoader.people.forEach(dao::insert);
             });
         }
     };
