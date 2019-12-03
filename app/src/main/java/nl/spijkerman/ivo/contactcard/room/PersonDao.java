@@ -1,4 +1,4 @@
-package nl.spijkerman.ivo.contactcard;
+package nl.spijkerman.ivo.contactcard.room;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -8,6 +8,8 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
+
+import nl.spijkerman.ivo.contactcard.Person;
 
 @Dao
 public interface PersonDao {

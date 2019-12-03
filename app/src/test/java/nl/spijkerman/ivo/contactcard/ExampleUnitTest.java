@@ -3,6 +3,8 @@ package nl.spijkerman.ivo.contactcard;
 import org.json.JSONException;
 import org.junit.Test;
 
+import nl.spijkerman.ivo.contactcard.room.PersonLoader;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *

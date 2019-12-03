@@ -6,13 +6,19 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import nl.spijkerman.ivo.contactcard.room.PersonDao;
+import nl.spijkerman.ivo.contactcard.room.PersonRoomDatabase;
+
+import static nl.spijkerman.ivo.contactcard.room.PersonRoomDatabase.*;
+
+
 public class PersonRepository {
 
     private PersonDao personDao;
     private LiveData<List<Person>> allPeople;
 
-    PersonRepository(Application application) {
-        PersonRoomDatabase db = PersonRoomDatabase.getDatabase(application);
+    public PersonRepository(Application application) {
+        PersonRoomDatabase db = getDatabase(application);
         personDao = db.personDao();
         allPeople = personDao.getAllPeople();
     }
@@ -22,6 +28,6 @@ public class PersonRepository {
     }
 
     void insert(Person person) {
-        PersonRoomDatabase.execute(() -> personDao.insert(person));
+        execute(() -> personDao.insert(person));
     }
 }

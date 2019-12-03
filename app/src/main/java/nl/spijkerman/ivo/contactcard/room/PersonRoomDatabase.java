@@ -1,4 +1,4 @@
-package nl.spijkerman.ivo.contactcard;
+package nl.spijkerman.ivo.contactcard.room;
 
 import android.content.Context;
 
@@ -10,6 +10,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import nl.spijkerman.ivo.contactcard.Person;
 
 @Database(entities = {Person.class}, version = 1, exportSchema = false)
 public abstract class PersonRoomDatabase extends RoomDatabase {
@@ -35,12 +37,12 @@ public abstract class PersonRoomDatabase extends RoomDatabase {
     private static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static void execute(Runnable action) {
+    public static void execute(Runnable action) {
         databaseWriteExecutor.execute(action);
     }
 
 
-    static PersonRoomDatabase getDatabase(final Context context) {
+    public static PersonRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (PersonRoomDatabase.class) {
                 if (INSTANCE == null) {

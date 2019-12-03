@@ -1,4 +1,4 @@
-package nl.spijkerman.ivo.contactcard;
+package nl.spijkerman.ivo.contactcard.room;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import nl.spijkerman.ivo.contactcard.Person;
+import nl.spijkerman.ivo.contactcard.R;
 
 public class PersonListAdapter extends RecyclerView.Adapter<PersonListAdapter.PersonViewHolder> {
 
@@ -28,7 +31,7 @@ public class PersonListAdapter extends RecyclerView.Adapter<PersonListAdapter.Pe
         return new PersonViewHolder(personView);
     }
 
-    void setPeople(List<Person> people) {
+    public void setPeople(List<Person> people) {
         this.people = people;
     }
 
